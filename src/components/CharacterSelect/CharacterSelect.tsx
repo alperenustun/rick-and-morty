@@ -1,12 +1,12 @@
+import { useEffect, useState } from "react";
+import { AxiosError } from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { useDebounce } from "use-debounce";
 import { Character } from "../../types/Character";
 import { getCharactersByName } from "../../api/characters";
 import Loading from "../Loading/Loading";
-import { useDebounce } from "use-debounce";
-import { useEffect, useState } from "react";
 import CharacterListItem from "./CharacterSelectItem/CharacterSelectItem";
 import "./CharacterSelect.scss";
-import { AxiosError } from "axios";
 
 interface CharacterSelectProps {}
 
@@ -62,10 +62,14 @@ const CharacterSelect: React.FC<CharacterSelectProps> = () => {
       />
     ));
   };
+  
+  console.log(selectedCharacters);
 
   return (
     <div className="character-select">
-      <input type="text" onChange={(e) => setSearchInput(e.target.value)} />
+      <div className="input-wrapper">
+        <input type="text" onChange={(e) => setSearchInput(e.target.value)} />
+      </div>
 
       <div className="character-select__wrapper">{renderCharacterList()}</div>
     </div>
