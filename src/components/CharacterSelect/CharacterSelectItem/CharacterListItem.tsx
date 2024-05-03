@@ -31,7 +31,7 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({
       <input
         type="checkbox"
         className="character-list-item__select"
-        checked={selected ? true : false}
+        defaultChecked={selected}
         onClick={() => onSelect(character)}
       />
       <img
