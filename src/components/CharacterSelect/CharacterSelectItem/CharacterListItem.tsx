@@ -12,15 +12,18 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({
   character,
   selected,
   onSelect,
-  searchValue
+  searchValue,
 }) => {
-
   const nameParts = character.name.split(
     new RegExp(`(${searchValue})`, "gi") // Case-insensitive search
   );
 
-  const characterName = nameParts.map((part: string) =>
-    part.toLowerCase() === searchValue.toLowerCase() ? <b>{part}</b> : part
+  const characterName = nameParts.map((part: string, index: number) =>
+    part.toLowerCase() === searchValue.toLowerCase() ? (
+      <b key={index}>{part}</b>
+    ) : (
+      part
+    )
   );
 
   return (
@@ -31,8 +34,8 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({
       <input
         type="checkbox"
         className="character-list-item__select"
-        defaultChecked={selected}
-        onClick={() => onSelect(character)}
+        checked={selected}
+        onChange={() => onSelect(character)}
       />
       <img
         className="character-list-item__image"
