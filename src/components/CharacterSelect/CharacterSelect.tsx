@@ -14,7 +14,7 @@ const CharacterSelect: React.FC<CharacterSelectProps> = () => {
   const [searchInput, setSearchInput] = useState<string>("");
   const [debounceSearchInput] = useDebounce(searchInput, 500);
 
-  const [selectedCharacters, setSelectedCharacters] = useState<Set<number>>();
+  const [selectedCharacters, setSelectedCharacters] = useState<Character[]>();
 
   const { isPending, error, data, refetch } = useQuery({
     queryKey: debounceSearchInput
@@ -30,13 +30,19 @@ const CharacterSelect: React.FC<CharacterSelectProps> = () => {
   const { results: characterList } = data?.data || {};
 
   const handleSelect = (character: Character) => {
-    const newSelectedCharacters = new Set(selectedCharacters);
-    if (newSelectedCharacters.has(character.id)) {
-      newSelectedCharacters.delete(character.id);
+    const isSelected = selectedCharacters?.some(
+      (char) => char.id === character.id
+    );
+    if (isSelected) {
+      const newSelectedCharacters = selectedCharacters?.filter(
+        (char) => char.id !== character.id
+      );
+      setSelectedCharacters(newSelectedCharacters);
     } else {
-      newSelectedCharacters.add(character.id);
+      setSelectedCharacters(
+        selectedCharacters ? [...selectedCharacters, character] : [character]
+      );
     }
-    setSelectedCharacters(newSelectedCharacters);
   };
 
   const axiosError = error as AxiosError;
@@ -57,12 +63,16 @@ const CharacterSelect: React.FC<CharacterSelectProps> = () => {
       <CharacterListItem
         key={character.id}
         character={character}
-        selected={selectedCharacters?.has(character.id) || false}
+        selected={
+          (selectedCharacters &&
+            selectedCharacters.some((char) => char.id === character.id)) ||
+          false
+        }
         onSelect={handleSelect}
       />
     ));
   };
-  
+
   console.log(selectedCharacters);
 
   return (
