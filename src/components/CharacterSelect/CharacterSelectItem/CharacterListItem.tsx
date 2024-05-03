@@ -14,6 +14,15 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({
   onSelect,
   searchValue
 }) => {
+
+  const nameParts = character.name.split(
+    new RegExp(`(${searchValue})`, "gi") // Case-insensitive search
+  );
+
+  const characterName = nameParts.map((part: string) =>
+    part.toLowerCase() === searchValue.toLowerCase() ? <b>{part}</b> : part
+  );
+
   return (
     <li
       key={character.id}
@@ -31,7 +40,7 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({
         alt={character.name}
       />
       <div>
-        <h3 className="character-list-item__title">{character.name}</h3>
+        <h3 className="character-list-item__title">{characterName}</h3>
         <p className="character-list-item__episodes">
           {character.episode.length} Episodes
         </p>
