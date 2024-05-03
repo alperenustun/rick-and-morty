@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Character } from "../../../types/Character";
 import "./CharacterListItem.scss";
 
@@ -37,11 +38,13 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({
         checked={selected}
         onChange={() => onSelect(character)}
       />
-      <img
-        className="character-list-item__image"
-        src={character.image}
-        alt={character.name}
-      />
+      <Link to={`/characters/${character.id}`}>
+        <img
+          className="character-list-item__image"
+          src={character.image}
+          alt={character.name}
+        />
+      </Link>
       <div>
         <h3 className="character-list-item__title">{characterName}</h3>
         <p className="character-list-item__episodes">
