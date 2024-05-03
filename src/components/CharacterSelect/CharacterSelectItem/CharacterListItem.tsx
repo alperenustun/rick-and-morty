@@ -1,16 +1,18 @@
 import { Character } from "../../../types/Character";
-import "./CharacterSelectItem.scss";
+import "./CharacterListItem.scss";
 
 interface CharacterListItemProps {
   character: Character;
   selected: boolean;
   onSelect: (character: Character) => void;
+  searchValue: string;
 }
 
 const CharacterListItem: React.FC<CharacterListItemProps> = ({
   character,
   selected,
   onSelect,
+  searchValue
 }) => {
   return (
     <li

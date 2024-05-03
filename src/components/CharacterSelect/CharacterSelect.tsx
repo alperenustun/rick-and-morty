@@ -5,7 +5,7 @@ import { useDebounce } from "use-debounce";
 import { Character } from "../../types/Character";
 import { getCharactersByName } from "../../api/characters";
 import Loading from "../Loading/Loading";
-import CharacterListItem from "./CharacterSelectItem/CharacterSelectItem";
+import CharacterListItem from "./CharacterSelectItem/CharacterListItem";
 import "./CharacterSelect.scss";
 import SelectedCharacterTag from "./SelectedCharacterTag/SelectedCharacterTag";
 
@@ -70,6 +70,7 @@ const CharacterSelect: React.FC<CharacterSelectProps> = () => {
           false
         }
         onSelect={handleSelect}
+        searchValue={searchInput}
       />
     ));
   };
