@@ -5,7 +5,7 @@ const getCharacters = async (pageNumber: number = 1) => {
 };
 
 const getCharacter = async (characterId: number) => {
-  return api.get(`/character/${characterId.toString()}`);
+  return api.get(`/character/${characterId}`);
 };
 
 const getCharactersByName = async (characterName: string) => {
