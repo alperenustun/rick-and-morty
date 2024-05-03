@@ -1,0 +1,29 @@
+@import "../../styles/abstracts/placeholders";
+
+.character-select {
+  width: 800px;
+
+  &__wrapper {
+    border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+    height: 550px;
+    overflow-y: scroll;
+    @extend %custom-scrollbar;
+    border: 1px solid $dark-font-color;
+    border-radius: 10px;
+  }
+}
+
+.error-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .character-select {
+    width: 100%;
+  }
+}
