@@ -7,6 +7,7 @@ import { getCharactersByName } from "../../api/characters";
 import Loading from "../Loading/Loading";
 import CharacterListItem from "./CharacterSelectItem/CharacterSelectItem";
 import "./CharacterSelect.scss";
+import SelectedCharacterTag from "./SelectedCharacterTag/SelectedCharacterTag";
 
 interface CharacterSelectProps {}
 
@@ -73,11 +74,17 @@ const CharacterSelect: React.FC<CharacterSelectProps> = () => {
     ));
   };
 
-  console.log(selectedCharacters);
-
   return (
     <div className="character-select">
       <div className="input-wrapper">
+        {selectedCharacters?.map((character) => (
+          <SelectedCharacterTag
+            key={character.id}
+            character={character}
+            selectedCharacters={selectedCharacters}
+            setSelectedCharacters={setSelectedCharacters}
+          />
+        ))}
         <input type="text" onChange={(e) => setSearchInput(e.target.value)} />
       </div>
 

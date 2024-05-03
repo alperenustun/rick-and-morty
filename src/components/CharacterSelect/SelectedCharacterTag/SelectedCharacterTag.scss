@@ -1,0 +1,22 @@
+@import "../../../styles/abstracts/variables";
+
+.selected-character{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: $light-blue-bg;
+    padding: 8px 10px;
+    border-radius: 10px;
+
+    &__btn{
+        background-color: $dark-blue-bg;
+        color: white;
+        border: none;
+        width: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}

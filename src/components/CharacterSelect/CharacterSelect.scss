@@ -6,6 +6,16 @@
   background-color: white;
   border-radius: 10px;
 
+  .input-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    border: 2px solid $dark-font-color;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 1em;
+  }
+
   &__wrapper {
     border: 2px solid blue;
     display: flex;
