@@ -1,0 +1,22 @@
+.character-detail {
+  gap: 50px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 2em;
+  border-radius: 10px;
+
+  &__image {
+    flex: 1;
+  }
+
+  &__title{
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  &__description {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+}

@@ -4,6 +4,7 @@ import "./HomePage.scss";
 const HomePage: React.FC = () => {
   return (
     <div className="homepage-main">
+      <div className="background-image"></div>
       <CharacterSelect />
     </div>
   );
