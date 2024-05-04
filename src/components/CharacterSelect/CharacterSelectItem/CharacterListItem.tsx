@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Character } from "../../../types/Character";
 import "./CharacterListItem.scss";
+import { useEffect, useRef } from "react";
 
 interface CharacterListItemProps {
   character: Character;
@@ -27,10 +28,40 @@ const CharacterListItem: React.FC<CharacterListItemProps> = ({
     )
   );
 
+  const listItemRef = useRef<HTMLLIElement>(null);
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
+    if (event.key === "Enter") {
+      onSelect(character);
+    } else if (event.key === "ArrowDown" || event.key === "Tab") {
+      const nextItem = listItemRef.current?.nextElementSibling;
+      if (nextItem instanceof HTMLLIElement) {
+        nextItem.focus();
+      }
+    } else if (event.key === "ArrowUp" && event.shiftKey) {
+      onSelect(character);
+    } else if (event.key === "ArrowUp") {
+      const previousItem = listItemRef.current?.previousElementSibling;
+      if (previousItem instanceof HTMLLIElement) {
+        previousItem.focus();
+      }
+    }
+  };
+
+  useEffect(() => {
+    const listItem = listItemRef.current;
+    if (listItem && selected) {
+      listItem.focus();
+    }
+  }, [selected]);
+
   return (
     <li
       key={character.id}
       className={`${selected && "selected"} character-list-item`}
+      tabIndex={selected ? 0 : -1}
+      ref={listItemRef}
+      onKeyDown={handleKeyDown}
     >
       <input
         type="checkbox"
